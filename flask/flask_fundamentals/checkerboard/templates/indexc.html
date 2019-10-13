@@ -1,0 +1,33 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>checkerboard</title>
+
+</head>
+
+<body>
+
+    <table>
+        {% for y in range(num//2)%}
+        <tr>
+            {% for x in range(num//2): %}
+            <td class="c1"></td>
+            <td class="c2"></td>
+            {% endfor %}
+        </tr>
+        <tr>
+                {% for x in range(num//2): %}
+            <td class="c2"></td>
+            <td class="c1"></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>

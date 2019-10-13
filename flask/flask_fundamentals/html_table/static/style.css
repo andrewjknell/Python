@@ -1,0 +1,6 @@
+.container tr td{
+    border:solid 2px aquamarine;
+}
+.container{
+    width: 80%;
+}

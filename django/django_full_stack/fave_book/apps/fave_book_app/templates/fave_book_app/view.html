@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .book_desc {
+            display: inline-block;
+        }
+
+        .likes {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 200px;
+        }
+
+        hr {
+            border: solid black 1px;
+            width: 97%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1 class="ml-3 mt-2">Welcome, {{user.first_name}}</h1>
+    <hr>
+    <div class="book_desc">
+        <h2>{{book.title}}</h2>
+        <ul>Added by {{book.uploader.first_name}} {{book.uploader.last_name}}</ul>
+        <ul>Added on {{book.created_at}}</ul>
+        <ul>Last updated on {{book.updated_at}}</ul>
+        <ul>{{book.desc}}</ul>
+    </div>
+    <a href="/main">return to main page</a>
+    <div class="likes">
+        <h3>liked by</h3>
+        {% for user in book.liked_users.all %}
+        <ul>{{user.first_name}} {{user.last_name}}</ul>
+        {%endfor%}
+        <ul><a href="/fave_book/{{book.id}}">add to favorites</a></ul>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            padding-top: 20px;
+        }
+
+        .header {
+            margin-top: 1%;
+            margin-left: 1%;
+        }
+
+        .header h4,
+        h5 {
+            display: inline-block;
+        }
+
+        .header h5 {
+            margin-left: 20px;
+            border: black 1px solid;
+            width: 200px;
+            padding: 0 0 4px 3px;
+        }
+
+        .find_gold {
+            vertical-align: top;
+            border: black 2px solid;
+            text-align: center;
+            width: 20%;
+            display: inline-block;
+            height: 170px;
+            padding-top: 1%;
+            margin: 2% 2.3%;
+        }
+
+        .activities {
+            margin-left: 25px;
+            width: 94%;
+            height: 170px;
+            border: 1px solid black;
+            overflow: auto;
+        }
+
+        form {
+            margin-top: 10px;
+        }
+        .red{
+            color: red;
+        }
+        .green{
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h4>Your gold :</h4>
+        <h5>{{session['gold']}}</h5>
+    </div>
+
+    <div class="find_gold">
+        <h2>Farm</h2>
+        <h5>(earns 10-20 golds)</h5>
+        <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="farm" />
+            <input type="submit" value="Find Gold!" />
+        </form>
+    </div>
+
+    <div class="find_gold">
+        <h2>Cave</h2>
+        <h5>(earns 5-10 golds)</h5>
+        <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="cave" />
+            <input type="submit" value="Find Gold!" />
+        </form>
+    </div>
+
+    <div class="find_gold">
+        <h2>House</h2>
+        <h5>(earns 2-5 golds)</h5>
+        <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="house" />
+            <input type="submit" value="Find Gold!" />
+        </form>
+    </div>
+
+    <div class="find_gold">
+        <h2>Casino</h2>
+        <h5>(earns/takes 0-50 golds)</h5>
+        <form action="/process_money" method="post">
+            <input type="hidden" name="building" value="casino" />
+            <input type="submit" value="Find Gold!" />
+        </form>
+    </div>
+    <p style='margin-top: 70px; margin-left: 20px'>Activities:</p>
+    <div class="activities">
+        <div class="green">
+            <p>Earned {{amount}} golds from the {{place}}</p>
+        </div>
+        <div class="red">
+            <p>Entered a casino and lost {{amount}} golds...Ouch..</p>
+        </div>
+    </div>
+
+    <form action="/reset" method="get">
+        <button type="submit">Reset</button>
+    </form>
+</body>
+
+</html>

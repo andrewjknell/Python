@@ -1,0 +1,74 @@
+>>> from apps.book_authors_app.models import *
+>>> Book.objects.create(title='C Sharp', desc='great coding language')
+<Book: Book object>
+>>> Book.objects.create(title='Java', desc='took an intro to this')
+<Book: Book object>
+>>> Book.objects.create(title='Python', desc='currently learning')
+<Book: Book object>
+>>> Book.objects.create(title='PHP',desc='no idea what this is')
+<Book: Book object>
+>>> Book.objects.create(title='Ruby',desc='sam is great at this')
+<Book: Book object>
+
+>>> Author.objects.create(first_name='Jane',last_name='Austen')
+<Author: Author object>
+>>> dostoevksy =  Author.objects.create(first_name='Fyodor',last_name='Dostoevksy')
+>>> dickinson = Author.objects.create(first_name='Emily',last_name='Dickinson')
+>>> austen = Author.objects.get(id=1)
+>>> shakespeare = Author.objects.create(first_name='William',last_name='Shakespeare')
+>>> tzu = Author.objects.create(first_name='Lau',last_name='Tzu')
+
+>>> c = Book.objects.get(id=1)
+>>> j = Book.objects.get(id=2)
+>>> py = Book.objects.get(id=3)
+>>> php = Book.objects.get(id=4)
+>>> ruby = Book.objects.get(id=5)
+>>> c.title = "C#"
+>>> c.save()
+
+>>> update = Author.objects.get(id=4)
+>>> update.first_name = 'Bill'
+>>> update.save()
+>>> author = Author.objects.get(id=1)
+>>> book1 = Book.objects.get(id=1)
+>>> book2 = Book.objects.get(id=2)
+>>> author.books.add(book1)
+>>> author.books.add(book2)
+>>> update2 = Author.objects.get(id=2)
+>>> book3 = Book.objects.get(id=3)
+>>> update2.books.add(book1)
+>>> update2.books.add(book2)
+>>> update2.books.add(book3)
+>>> update3 = Author.objects.get(id=3)
+>>> book4 = Book.objects.get(id=4)
+>>> update3.books.add(book1)
+>>> update3.books.add(book2)
+>>> update3.books.add(book3)
+>>> update3.books.add(book4)
+>>> update4 = Author.objects.get(id=4)
+>>> book5 = Book.objects.get(id=5)
+>>> update4.books.add(book1)
+>>> update4.books.add(book2)
+>>> update4.books.add(book3)
+>>> update4.books.add(book4)
+>>> update4.books.add(book5)
+>>> book3.authors.all().values()
+<QuerySet [{'id': 2, 'first_name': 'Fyodor', 'last_name': 'Dostoevksy', 
+'notes': 'I found that his author has a beautiful way of expressing their 
+emotions through paper and pencil'}, {'id': 3, 'first_name': 'Emily', 
+'last_name': 'Dickinson', 'notes': 'I found that his author has a beautiful
+ way of expressing their emotions through paper and pencil'}, {'id': 4, 
+'first_name': 'Bill', 'last_name': 'Shakespeare', 'notes': 'I found that his
+ author has a beautiful way of expressing their emotions through paper and 
+pencil'}]>
+
+>>> book3_remove = book3.authors.first()
+>>> book3.authors.remove(update2)
+>>> book2.authors.add(update4)
+>>> update2.books.all().values()
+<QuerySet [{'id': 1, 'title': 'C#', 'desc': 'great coding language'}, {'id': 2, 'title': 'Java', 'desc': 'took an intro to this'}]>
+
+>>> book5.authors.all().values()
+<QuerySet [{'id': 4, 'first_name': 'Bill', 'last_name': 'Shakespeare', 'notes': 'I found that his author has a beautiful way of expressing their emotions through paper and pencil'}]>
+>>>
+

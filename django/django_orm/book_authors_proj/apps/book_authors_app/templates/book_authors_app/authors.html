@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="/port" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>authors</title>
+
+    <style>
+        .input {
+            width: 300px;
+            margin-top: 20px;
+            vertical-align: top;
+            display: inline-block;
+            height: 400px;
+        }
+
+        .contain {
+            display: inline-block;
+            width: 500px;
+            margin-left: 200px;
+            margin-top: 25px;
+            height: 300px;
+            overflow: auto;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="input">
+        <form action="authors/add" method="POST">
+            {% csrf_token %}
+            <h1>Add an Author</h1>
+            <input class="form-control mb-1" name="first" type="text" placeholder="First Name">
+            <input class="form-control mb-1" name="last" type="text" placeholder="Last Name">
+            <textarea class="form-control " name="notes" placeholder="Notes" rows="4"></textarea>
+            <button type="submit" class="btn btn-primary">ADD</button>
+        </form>
+    </div>
+    <div class='contain'>
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for author in authors %}
+                <tr>
+                    <th scope="row">{{author.id}}</th>
+                    <td>{{author.first_name}} {{author.last_name}}</td>
+                    <td><a href="authors/{{author.id}}">view</a></td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/books">back to books</a>
+</body>
+
+</html>

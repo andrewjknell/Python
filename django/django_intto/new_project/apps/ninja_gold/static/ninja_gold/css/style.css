@@ -1,0 +1,50 @@
+
+body {
+    padding-top: 20px;
+}
+
+.header {
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+.header h4,
+h5 {
+    display: inline-block;
+}
+
+.header h5 {
+    margin-left: 20px;
+    border: black 1px solid;
+    width: 200px;
+    padding: 0 0 4px 3px;
+}
+
+.find_gold {
+    vertical-align: top;
+    border: black 2px solid;
+    text-align: center;
+    width: 20%;
+    display: inline-block;
+    height: 170px;
+    padding-top: 1%;
+    margin: 2% 2.3%;
+}
+
+.activities {
+    margin-left: 25px;
+    width: 94%;
+    height: 170px;
+    border: 1px solid black;
+    overflow: auto;
+}
+
+form {
+    margin-top: 10px;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}

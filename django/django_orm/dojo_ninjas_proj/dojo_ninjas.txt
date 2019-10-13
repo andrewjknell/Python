@@ -1,0 +1,67 @@
+>>> from apps.dojo_ninjas_app.models import *
+>>> Dojo.objects.create(name='Dragon Dojo', city='San Jose', state='ca')
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name='Red Dragon Dojo', city='San Francisco',state='ca')
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name='Lone Wolf Dojo', city='Milpitas', state='ca')
+<Dojo: Dojo object>
+
+
+>>> ninja1 = Ninjas.objects.create(dojo=Dojo.objects.get(id=4),first_name='andrew',last_name='knell')
+>>> ninja2 = Ninjas.objects.create(dojo=Dojo.objects.get(id=4),first_name='sam',last_name='scott')
+>>> ninja3 = Ninjas.objects.create(dojo=Dojo.objects.get(id=6),first_name='nate',last_name='ting')
+>>> ninja4 = Ninjas.objects.create(dojo=Dojo.objects.get(id=4),first_name='john',last_name='john')
+>>> ninja5 = Ninjas.objects.create(dojo=Dojo.objects.get(id=5),first_name='samy',last_name='tang')
+>>> ninja6 = Ninjas.objects.create(dojo=Dojo.objects.get(id=5),first_name='samm',last_name='tang')
+>>> ninja6 = Ninjas.objects.create(dojo=Dojo.objects.get(id=5),first_name='jann',last_name='ting')
+>>> ninja7 = Ninjas.objects.create(dojo=Dojo.objects.get(id=6),first_name='nico',last_name='john')
+>>> ninja8 = Ninjas.objects.create(dojo=Dojo.objects.get(id=6),first_name='tico',last_name='dawn')
+>>> ninja9 = Ninjas.objects.create(dojo=Dojo.objects.get(id=6),first_name='tiny',last_name='dawn')
+
+
+
+>>> Ninjas.objects.filter(dojo_id=4).values()
+<QuerySet [{'id': 1, 'dojo_id': 4, 'first_name': 'andrew', 'last_name': 'knell'}, {'id': 2, 'dojo_id': 4, 'first_name': 'sam', 'last_name': 'scott'}, {'id': 4, 'dojo_id': 4, 'first_name': 'john', 'last_name': 'john'}]>
+>>>
+
+
+>>> Ninjas.objects.filter(dojo_id=6).values()
+<QuerySet [{'id': 3, 'dojo_id': 6, 'first_name': 'nate', 'last_name': 'ting'}, {'id': 8, 'dojo_id': 6, 'first_name': 'nico', 'last_name': 'john'}, {'id': 9, 'dojo_id': 6, 'first_name': 'tico', 'last_name': 'dawn'}, {'id': 10, 'dojo_id': 6, 'first_name': 'tiny', 'last_name': 'dawn'}]>
+>>>
+
+
+>>> last = Ninjas.objects.get(id=6)
+>>> last.dojo
+
+
+(py3Env) C:\Users\andre\OneDrive\python_stack\django\django_orm\dojo_ninjas_proj>python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> 'old dojo'
+Migrations for 'dojo_ninjas_app':
+  apps\dojo_ninjas_app\migrations\0002_dojo_desc.py:
+    - Add field desc to dojo
+
+(py3Env) C:\Users\andre\OneDrive\python_stack\django\django_orm\dojo_ninjas_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying dojo_ninjas_app.0002_dojo_desc... OK
+
+(py3Env) C:\Users\andre\OneDrive\python_stack\django\django_orm\dojo_ninjas_proj>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.dojo_ninjas_app.models import *
+>>> Dojo.objects.create(name='Red Dojo',city='SJ',state='ca',desc='best dojo in the west')
+<Dojo: Dojo object>
+>>>
+
+

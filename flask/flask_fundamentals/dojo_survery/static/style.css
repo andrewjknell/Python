@@ -1,0 +1,26 @@
+/* *{
+    border: solid .3px black;
+} */
+body{
+    padding: 15%;
+}
+h1{
+    color: blue;
+}
+
+.questions{
+    display: inline-block;
+    vertical-align: top;
+}
+.questions p{
+    margin-bottom: 40px;
+    font-size: 25px;
+}
+.forms{
+    display: inline-block;
+    margin-left: 300px;
+}
+.form-control{
+    margin-bottom: 40px;
+}
+

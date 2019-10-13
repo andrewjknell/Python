@@ -1,0 +1,30 @@
+>>> Users.objects.create(first_name='andrew', last_name='knell', email_address='andrew@yahoo.com', age=27)
+<Users: Users object>
+
+>>> Users.objects.create(first_name='nate', last_name='tang', email_address='ting@yahoo.com', age=26)
+<Users: Users object>
+
+>>> Users.objects.create(first_name='sam', last_name='scott', email_address='sam@yahoo.com', age=28)
+<Users: Users object>
+
+>>> Users.objects.all().values()
+
+>>> Users.objects.first()
+
+>>> Users.objects.last()
+
+>>> user_update = Users.objects.get(id=3)
+>>> user_update.last_name='scottyboy'
+>>> user.update.save()
+
+>>> user_delete = Users.objects.get(id=2)
+>>> user_delete.delete()
+
+>>> all_users=Users.objects.all()
+>>> for m in all_users:
+...     print(m.first_name)
+...
+andrew
+sam
+>>>
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>{{ author.first_name }} {{author.last_name}}</h1>
+    <h4>ID {{author.id}}</h4>
+    <h4>Notes</h4>
+    <p>{{ author.notes }}</p>
+    Books:
+    {% for book in author.books.all %}
+    <ul>{{book.title}}</ul>
+    {% endfor %}
+
+
+    <form action="/authors/add_book/{{author.id}}" method="POST">
+        {%csrf_token%}
+        <select name="new_book" class="form-control">
+            {% for book in add_book %}
+                {% if book not in author.books.all  %}
+                    <option value="{{book.id}}">{{book.title}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Add Book</button>
+    </form>
+    <a href="/authors">return to authors</a>
+</body>
+
+</html>

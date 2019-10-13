@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<style>
+    .form {
+        overflow: auto;
+        width: 80%;
+        margin-left: 5%;
+    }
+
+    .message {
+        width: 85%;
+        margin-left: 5%;
+        margin-top: 20px;
+    }
+
+    .comment {
+        margin-left: 10%;
+        width: 75%;
+        margin-top: 20px;
+    }
+
+  
+
+    .form button {
+        margin-left: 84%;
+        width: 170px;
+
+    }
+
+    .comment_post {
+        width: 60%;
+        margin-left: 18%;
+        margin-top: 20px;
+    }
+    .indent{
+        margin-left: 100px;
+    }
+</style>
+
+<body>
+    <div class="form">
+        <label for="messagetext">Post a message</label>
+        <a href="/logout">logout</a>
+        <form action="/post_message/{{user.id}}" method="post">
+            {%csrf_token%}
+            <textarea name="message_post" class="form-control" id="messagetext" rows="3"></textarea>
+            <button type="submit" class="btn btn-primary mt-2 mb-2">post message</button>
+        </form>
+    </div>
+    <div class="message">
+        {% for message in messages reversed %}
+        <label>{{message.user.first_name}} {{message.user.last_name}} - {{message.created_at}} </label>
+        <p>{{message.message}}</p>
+        {% for comment in message.comments.all %}
+        <label class="indent">{{comment.user.first_name}} {{comment.user.last_name}} - {{comment.created_at}}</label>
+        <p class="indent">{{comment.comment}}</p>
+        {%endfor%}
+        <div class="comment_post">
+                <form action="/post_comment/{{message.id}}" method="post">
+                    {%csrf_token%}
+                    <textarea name="comment_post" class="form-control" id="messagetext" rows="2"></textarea>
+                    <button type="submit" class="btn btn-info mt-2 mb-2">post comment</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+<a href="/">back to login</a>
+</html>

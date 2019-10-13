@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guessing Game</title>
+
+    <style>
+        body {
+            text-align: center;
+            margin-top: 2%;
+            background-image: url('/static/question.jpg');
+            background-size: 200px 200px;
+        }
+
+        h1 {
+            background-color: white;
+            font-size: 60px;
+        }
+
+        h2 {
+            background-color: white;
+        }
+
+        .result {
+            background-color: {{ session['color'] }};
+            height: 250px;
+            width: 250px;
+            margin: auto;
+            padding-top: 10%;
+        }
+        .form-control{
+            width: 200px;
+            margin: 30px auto 0;
+        }
+        .result p{
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Welcome to the Great Number Game!</h1>
+    <h2>I am thinking of a number between 1 and 10....</h2>
+    <h2>Take a guess!</h2>
+    <div class="result">
+        <p>{{ session['result'] }}</p>
+    </div>
+    <form action='/guess' method="post">
+        <input class="form-control" type="text" placeholder="pick a number" name="guess">
+        <button type="submit" class="btn btn-primary" value="number_pick">Guess</button>
+
+        </form>
+        <form action='/reset' method="get">
+            <div class="button_reset">
+                <button class="btn btn-danger" type="submit">RESET</button>
+            </div>
+        </form>
+
+</body>
+
+</html>
